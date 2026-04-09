@@ -1,13 +1,96 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+  background-color: #ef4444;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  color: white;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.btn:hover {
+  transform: scale(1.05);
+  background-color: #dc2626;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+/* buttons */
+.btn {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  padding: 10px 16px;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  transform: scale(1.07);
+}
+
+.btn:active {
+  transform: scale(0.92);
+}
+
+/* home icon */
+.icon-btn {
+  font-size: 20px;
+  padding: 8px;
+  border-radius: 50%;
+  background: #1f2937;
+  transition: 0.2s;
+}
+
+.icon-btn:hover {
+  transform: scale(1.2);
+}
+
+/* genre chips */
+.chip {
+  background: #1f2937;
+  padding: 6px 12px;
+  border-radius: 20px;
+  transition: 0.2s;
+}
+
+.chip:hover {
+  background: #ef4444;
+}
+
+/* movie cards */
+.movie-card {
+  transition: 0.3s;
+}
+
+.movie-card:hover {
+  transform: scale(1.08);
+}
+
+/* modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #111827;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+}
+
+.close-btn {
+  margin-top: 10px;
+  padding: 6px 10px;
+  background: gray;
+  border-radius: 6px;
 }
