@@ -9,10 +9,13 @@ function Home() {
   const user = JSON.parse(localStorage.getItem("user"));
   const API_KEY = "0174c69010f787882a48faa008d030d0";
 
+  const BASE_URL = "https://cineverse-backend-jhdb.onrender.com";
+
   useEffect(() => {
-    fetchPopular();
-    fetchWatchlist();
-  }, []);
+  fetchPopular();
+  fetchWatchlist();
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
 
   const fetchPopular = async () => {
     const res = await fetch(
@@ -32,7 +35,7 @@ function Home() {
 
   const searchMovies = async () => {
     if (!query) {
-      fetchPopular(); // 🏠 reset
+      fetchPopular();
       return;
     }
 
@@ -44,15 +47,15 @@ function Home() {
   };
 
   const fetchWatchlist = async () => {
-    const res = await fetch(`http://localhost:5000/watchlist/${user.id}`);
+    const res = await fetch(`${BASE_URL}/watchlist/${user.id}`);
     const data = await res.json();
     setWatchlist(data);
   };
 
   const addToWatchlist = async (movie) => {
-    await fetch("http://localhost:5000/watchlist", {
+    await fetch(`${BASE_URL}/watchlist`, {
       method: "POST",
-      headers: {"Content-Type": "application/json"},
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         userId: user.id,
         movie: {
@@ -67,9 +70,9 @@ function Home() {
   };
 
   const removeFromWatchlist = async (id) => {
-    await fetch("http://localhost:5000/watchlist", {
+    await fetch(`${BASE_URL}/watchlist`, {
       method: "DELETE",
-      headers: {"Content-Type": "application/json"},
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         userId: user.id,
         movieId: id,
@@ -91,7 +94,6 @@ function Home() {
   return (
     <div className="bg-gradient-to-br from-black via-gray-900 to-black text-white min-h-screen p-6">
 
-      {/* HEADER */}
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl text-red-500 font-bold tracking-wide">
           CineVerse 🎬
@@ -99,7 +101,6 @@ function Home() {
 
         <div className="flex gap-3 items-center">
 
-          {/* HOME BUTTON */}
           <button onClick={fetchPopular} className="icon-btn">
             🏠
           </button>
@@ -116,7 +117,6 @@ function Home() {
         </div>
       </div>
 
-      {/* SEARCH */}
       <div className="mb-6 flex gap-3">
         <input
           placeholder="Search movies..."
@@ -129,7 +129,6 @@ function Home() {
         </button>
       </div>
 
-      {/* GENRES */}
       <div className="mb-6 flex flex-wrap gap-3">
         {[
           { id: 28, name: "Action" },
@@ -147,7 +146,6 @@ function Home() {
         ))}
       </div>
 
-      {/* MOVIES */}
       <div className="grid grid-cols-5 gap-5">
         {movies.map((m) => (
           <div
@@ -165,7 +163,6 @@ function Home() {
         ))}
       </div>
 
-      {/* DETAILS MODAL */}
       {selected && (
         <div className="modal">
           <div className="modal-content">
@@ -194,7 +191,6 @@ function Home() {
         </div>
       )}
 
-      {/* WATCHLIST */}
       <h2 className="mt-10 text-xl">Your Watchlist</h2>
 
       <div className="grid grid-cols-5 gap-5 mt-3">

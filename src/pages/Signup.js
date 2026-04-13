@@ -6,10 +6,12 @@ function Signup() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  const BASE_URL = "https://cineverse-backend-jhdb.onrender.com";
+
   const signup = async () => {
-    await fetch("http://localhost:5000/signup", {
+    await fetch(`${BASE_URL}/signup`, {
       method: "POST",
-      headers: {"Content-Type": "application/json"},
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
     });
 
