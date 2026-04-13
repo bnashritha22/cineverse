@@ -1,16 +1,19 @@
+require("dotenv").config({ path: "./.env" });
+console.log("MONGO_URI:", process.env.MONGO_URI);
+
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect("mongodb://127.0.0.1:27017/cineverse")
+/* ================= DB CONNECTION ================= */
+
+mongoose.connect("mongodb://bnashritha22_db_user:wjZaSE02SiyMuOwv@ac-kjytgkx-shard-00-00.htuwst6.mongodb.net:27017,ac-kjytgkx-shard-00-01.htuwst6.mongodb.net:27017,ac-kjytgkx-shard-00-02.htuwst6.mongodb.net:27017/cineverse?ssl=true&replicaSet=atlas-tc13vo-shard-0&authSource=admin&appName=Cluster0")
   .then(() => console.log("MongoDB connected ✅"))
   .catch((err) => console.log(err));
-
 const User = require("./models/User");
 
 app.get("/", (req, res) => {
@@ -89,6 +92,8 @@ app.delete("/watchlist", async (req, res) => {
   res.json(user.watchlist);
 });
 
-app.listen(5000, () => {
-  console.log("Server running on port 5000 🚀");
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT} 🚀`);
 });
